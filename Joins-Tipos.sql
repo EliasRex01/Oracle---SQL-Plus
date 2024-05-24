@@ -54,3 +54,62 @@ SELECT c.cedula, c.nombre, c.apellido, l.nombre
 FROM b_personas c LEFT OUTER JOIN b_localidad l
 ON l.id = c.id_localidad;
 
+Ejemplo de RIGHT OUTER JOIN
+• Nos interesa listar todas las localidades, aún 
+cuando no haya personas en dicha localidad
+
+SELECT c.cedula, c.nombre, c.apellido, 
+l.nombre "Localidad"
+FROM b_personas c, b_localidad l
+WHERE l.id = c.id_localidad (+);
+
+SELECT c.cedula, c.nombre, c.apellido, 
+l.nombre "Localidad"
+FROM b_personas c RIGHT OUTER JOIN 
+b_localidad l
+ON l.id = c.id_localidad;
+
+Ejemplo de FULL OUTER JOIN
+• Nos interesa listar todas las localidades, aún 
+cuando no haya personas en dicha localidad, y 
+todas las personas, aún cuando se conozca la 
+localidad a la que pertenecen
+SELECT c.cedula, c.nombre, c.apellido,
+l.nombre "Localidad"
+FROM b_personas c FULL OUTER JOIN b_localidad l
+ON l.id = c.id_localidad;
+
+Producto Cartesiano
+Sintaxis implícita, omitiendo la cláusula WHERE:
+
+SELECT c.fecha, c.id_proveedor, p.nombre 
+FROM b_compras c, b_personas p;
+
+SELECT c.fecha, c.id_proveedor, p.nombre 
+FROM b_compras c CROSS JOIN b_personas p;
+
+Union
+La normal une dos tablas (eliminando duplicados). El union all es lo contrario (une dos tablas sin eliminar duplicados)
+
+Select nombre, apellido from b_empleados
+UNION
+Select nombre, apellido from b_personas;
+
+Intersección
+• El comando INTERSECT tiene los mismos
+requerimientos de la UNION.
+• Ej.: Ver todos los empleados que han
+realizado alguna venta
+SELECT cedula FROM b_empleados
+INTERSECT
+SELECT cedula_vendedor FROM b_ventas;
+
+Diferencia
+• El comando MINUS reproduce la resta 
+algebraica.
+• Ej.: Ver todos los empleados que NO han 
+realizado venta alguna
+SELECT cedula FROM b_empleados
+MINUS
+SELECT cedula_vendedor FROM b_ventas;
+
