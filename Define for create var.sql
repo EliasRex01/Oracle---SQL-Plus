@@ -11,8 +11,8 @@ SHOW ALL    -- muestra uma lista con todas las variables
 
 
 -- Ejemplo de variables de substitución 
--- • Para strings y fechas, ponga la variable entre apóstrofes
--- • Use (&&) si se desea reutilizar el valor de la variable sin tener que 
+-- Para strings y fechas, ponga la variable entre apóstrofes
+-- Use (&&) si se desea reutilizar el valor de la variable sin tener que 
 -- repetir el valor por cada ejecucion
 SQL> SELECT nombre ||' '|| apellido as Empleado
 2 FROM b_empleados
