@@ -1,71 +1,67 @@
-Funciones para Strings
-unción Resultado
-LOWER('SQL Course') sql course
-UPPER('SQL Course') SQL COURSE
-INITCAP('SQL Course') Sql course
+-- Funciones para Strings
+-- Función                                  Resultado
+LOWER('SQL Course')                         sql course
+UPPER('SQL Course')                         SQL COURSE
+INITCAP('SQL Course')                       Sql course
+  
 SELECT employee_id, last_name, department_id
 FROM employees
 WHERE last_name = 'higgins';
+
 SELECT employee_id, last_name, department_id
 FROM employees
 WHERE LOWER(last_name) = 'higgins';
-12
 
-Función - Resultado
-CONCAT('Hello', 'World') HelloWorld
-SUBSTR('HelloWorld',1,5) Hello
-LENGTH('HelloWorld') 10
-INSTR('HelloWorld', 'W') 6
-LPAD(salary,10,'*') *****24000
-RPAD(salary, 10, '*') 24000*****
-REPLACE
-('JACK and JUE','J','BL')
-BLACK and BLUE
-TRIM('H' FROM 
-'HelloWorld')
-elloWorld
+-- Función                                  Resultado
+CONCAT('Hello', 'World')                    HelloWorld
+SUBSTR('HelloWorld',1,5)                    Hello
+LENGTH('HelloWorld')                        10
+INSTR('HelloWorld', 'W')                    6
+LPAD(salary,10,'*')                         *****24000
+RPAD(salary, 10, '*')                       24000*****
+REPLACE ('JACK and JUE','J','BL')           BLACK and BLUE
+TRIM('H' FROM 'HelloWorld')                 elloWorld
 
-Formato de Fechas
-ORACLE almacena fechas internamente en formato numérico: 
-Centurias, año, meses, días , horas, minutos y segundos
-Por default se despliega en el formato DD-MM-YYYY
-• SYSDATE es una función que retorna fecha y hora actual del 
-servidor. 
-• CURRENT_DATE también retorna fecha y hora actual en la 
-zona horaria de la sesión. 
-SYSDATE y CURRENT_DATE no tienen argumentos
+-- Formato de Fechas
+-- Por default se despliega en el formato DD-MM-YYYY
+-- SYSDATE es una función que retorna fecha y hora actual del servidor. 
+-- CURRENT_DATE también retorna fecha y hora actual en la zona horaria de la sesión. 
+-- SYSDATE y CURRENT_DATE no tienen argumentos
+  
 SELECT sysdate FROM dual;
+
 SELECT current_date FROM dual;
-Si el usuario y el servidor están en Asunción, no habrá diferencias, pero si el servidor está en otro país, por ejemplo en China, puede haber hasta 12 horas de diferencia entre ambos resultados.
 
-Funciones de fecha
-Función Resultado
-MONTHS_BETWEEN ('01-SEP-95','11-JAN-94‘) 19.6774194
-ADD_MONTHS ('11-JAN-94',6) '11-JUL-94'
-NEXT_DAY ('01-SEP-95','FRIDAY') '08-SEP-95'
-LAST_DAY ('01-FEB-95') '28-FEB-95'
-19
+-- Si el usuario y el servidor están en Asunción, no habrá diferencias, pero si el servidor está
+--  en otro país, por ejemplo en China, puede haber hasta 12 horas de diferencia entre ambos resultados.
 
-Supongamos que SYSDATE = '25-JUL-03':
-Función Resultado
-ROUND(SYSDATE,'MONTH') 01-AUG-03
-ROUND(SYSDATE ,'YEAR') 01-JAN-04
-TRUNC(SYSDATE ,'MONTH') 01-JUL-03
-TRUNC(SYSDATE ,'YEAR') 01-JAN-03
+-- Funciones de fecha
+-- Función                                                    Resultado
+MONTHS_BETWEEN ('01-SEP-95','11-JAN-94‘)                      19.6774194
+ADD_MONTHS ('11-JAN-94',6)                                    '11-JUL-94'
+NEXT_DAY ('01-SEP-95','FRIDAY')                               '08-SEP-95'
+LAST_DAY ('01-FEB-95')                                        '28-FEB-95'
 
-Obtener una parte de la fecha con EXTRACT
-• EXTRACT es una función de fecha que permite obtener 
-una parte de la fecha de los campos DATE o TIMESTAMP. 
-Ejemplos:
+-- Supongamos que SYSDATE = '25-JUL-03':
+-- Función                                       Resultado
+ROUND(SYSDATE,'MONTH')                           01-AUG-03
+ROUND(SYSDATE ,'YEAR')                           01-JAN-04
+TRUNC(SYSDATE ,'MONTH')                          01-JUL-03
+TRUNC(SYSDATE ,'YEAR')                           01-JAN-03
+
+-- Obtener una parte de la fecha con EXTRACT
+-- EXTRACT es una función de fecha que permite obtener una parte de la fecha de los campos DATE o TIMESTAMP. 
+-- Ejemplos:
+  
 SELECT EXTRACT (YEAR FROM SYSDATE) FROM DUAL;
+  
 SELECT EXTRACT (MONTH FROM SYSDATE) FROM DUAL;
-EXTRACT puede utilizarse para extraer (para tipos DATE y 
-TIMESTAMP):
+  
+-- EXTRACT puede utilizarse para extraer (para tipos DATE y TIMESTAMP):
 • AÑO (YEAR)
 • MES (MONTH)
 • DÍA (DAY)
-Estas funciones sólo pueden utilizarse con variables
-TIMESTAMP
+-- Estas funciones sólo pueden utilizarse con variables TIMESTAMP
 • HORA (HOUR)
 • MINUTO (MINUTE)
 • SEGUNDO (SECOND)
