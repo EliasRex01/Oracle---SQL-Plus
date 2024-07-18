@@ -3,7 +3,7 @@ Conectado a:
 Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
 Version 21.3.0.0.0
 SQL> ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;     -- permitir alteraciones
-Sesi≤n modificada.
+Sesion modificada.
 SQL> CREATE USER bd2_rex IDENTIFIED BY "1231329"      -- crear usuario
   2  DEFAULT TABLESPACE "USERS"
   3  TEMPORARY TABLESPACE "TEMP"
