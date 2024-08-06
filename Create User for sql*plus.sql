@@ -18,4 +18,9 @@ Concesion terminada correctamente.
 SQL> ALTER USER bd2_rex DEFAULT ROLE "RESOURCE";         -- habilitar rol por defecto como resource para el usuario
 Usuario modificado.
 
-SQL>
+SQL> show user con_name;
+USER es bd2_rex
+
+CON_NAME
+................................................
+CDB$RESOURCE
