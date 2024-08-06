@@ -5,3 +5,13 @@ SQL> get test.sql
 -- que se ejecuto con un select
 SQL> edit test.sql
 
+-- spool permite crear un archivo y guardar en el lo siguiente que se consulte y devuelva
+SQL> spool test2.sql
+SQL> select tname from tab;
+
+SQL> spool off
+
+-- describe o desc para ver tablas e informacion de tablas de una basen de datos
+SQL> desc b_ventas
+
+
