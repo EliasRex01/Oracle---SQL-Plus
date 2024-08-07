@@ -14,4 +14,5 @@ SQL> spool off
 -- describe o desc para ver tablas e informacion de tablas de una basen de datos
 SQL> desc b_ventas
 
-
+-- start ejecuta el contenido del archivo seleccionado con el
+SQL> start test.sql
