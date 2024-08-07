@@ -29,9 +29,9 @@ CDB$RESOURCE
 
 -- Para las clases y examenes de bd2
 SQL> CREATE USER basedatos2 IDENTIFIED BY "basedatos2"      -- crear usuario
-  2  DEFAULT TABLESPACE "USERS"
+  2  DEFAULT TABLESPACE "BASEDATOS2"
   3  TEMPORARY TABLESPACE "TEMP"
-  4  ;
+  4  GRANT DBA ;
 Usuario creado.
 SQL> ALTER USER basedatos2 QUOTA UNLIMITED ON USERS;      -- asignar uso ilimitado del espacio
 Usuario modificado.
