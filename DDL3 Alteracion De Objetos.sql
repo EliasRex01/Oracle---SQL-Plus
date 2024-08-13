@@ -1,4 +1,4 @@
-Las columnas virtuales:
+-- Las columnas virtuales:
 SQL> ALTER TABLE B_DETALLE_VENTAS ADD SUBTOTAL NUMBER(10) 
 GENERATED ALWAYS AS (CANTIDAD*PRECIO) VIRTUAL;
 
@@ -12,27 +12,26 @@ ID_ARTICULO CANTIDAD PRECIO SUBTOTAL
 788993 10 271818 2718180
 750135 10 36273 362730
 
-- Extienda la longitud máxima de la columna NOMBRE en la tabla de B_EMPLEADOS a 50 caracteres.
+-- Extienda la longitud máxima de la columna NOMBRE en la tabla de B_EMPLEADOS a 50 caracteres.
 ALTER TABLE b_empleados
 MODIFY (nombre VARCHAR2(50));
 
-- La idea de columnas invisibles es similar a la idea de crear una vista para dejar de lado las columnas que no desea que vea el usuario final.
+-- La idea de columnas invisibles es similar a la idea de crear una vista para dejar de lado las columnas que no desea que vea el usuario final.
 SQL> ALTER TABLE B_TIPO_CUENTA MODIFY NOMBRE_CATEGORIA INVISIBLE;
-- llamada normal (no se muestra)
+-- llamada normal (no se muestra)
 SQL> SELECT * FROM B_TIPO_CUENTA;
 SQL> SELECT ID,NOMBRE_CATEGORIA
 FROM B_TIPO_CUENTA;
 
-Borrando una Columna: Sintaxis
+-- Borrando una Columna: Sintaxis
 ALTER TABLE tabla
 DROP (columna );
-# Una columna no puede ser borrada si forma parte de un  constraint o de una clave, a no ser que se agregue la opción CASCADE
+-- Una columna no puede ser borrada si forma parte de un  constraint o de una clave, a no ser que se agregue la opción CASCADE
 
-Opción SET UNUSED
-Cuando se marca una columna como UNUSED ya no es accesible con el comando SELECT
+-- Opción SET UNUSED, Cuando se marca una columna como UNUSED ya no es accesible con el comando SELECT
 ALTER TABLE <tabla>
 SET UNUSED (columna);
-o bien
+-- o bien
 ALTER TABLE <tabla>
 SET UNUSED COLUMN <columna>;
 
