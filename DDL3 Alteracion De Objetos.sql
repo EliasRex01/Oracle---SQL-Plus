@@ -35,7 +35,6 @@ SET UNUSED (columna);
 ALTER TABLE <tabla>
 SET UNUSED COLUMN <columna>;
 
-
 -- Borrar columnas marcadas como UNUSED
 ALTER TABLE <tabla>
 DROP UNUSED COLUMNS;
@@ -62,20 +61,17 @@ DROP CONSTRAINT r_jefe_empleado;
 ALTER TABLE b_personas
 DROP PRIMARY KEY CASCADE;
 
-
 -- Desactivar constraint
 -- La sentencia ALTER TABLE posee la cláusula DISABLE que permite deshabilitar el funcionamiento una regla de integridad.
 -- • Aplique la opción CASCADE para desactivar constraints dependientes.
 ALTER TABLE b_empleados
 DISABLE CONSTRAINT r_jefe_empleado;
 
-
 -- Activar Constraints
 -- Active un constraint actualmente desactivado en la definición de la tabla usando la cláusula ENABLE.
 -- • Si se habilita un constraint UNIQUE o PRIMARY KEY, se crea automáticamente un índice.
 ALTER TABLE b_empleados
 ENABLE CONSTRAINT r_jefe_empleado;
-
 
 -- Borrando una Tabla:
 -- Se confirman las transacciones pendientes, Todos los índices se borran
