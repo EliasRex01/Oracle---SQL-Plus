@@ -39,7 +39,7 @@ ALTER ROLLBACK SEGMENT RB_TEMP ONLINE;
 ALTER USER SYSTEM TEMPORARY TABLESPACE TEMPORARY_DATA;
 ALTER USER SYSTEM DEFAULT TABLESPACE USER_DATA;
 
--- Creación de rollback segment publico (Estimar la cantidad de segmentos de
+-- Creacion de rollback segment publico (Estimar la cantidad de segmentos de
 -- rollback de acuerdo a los procesos ejecutados y a los usuarios que son conectados.
 -- Se recomienda un segmento de rollback por cada 4 (cuatro) usuarios conectados)
 CREATE PUBLIC ROLLBACK SEGMENT RB1 STORAGE(INITIAL 
