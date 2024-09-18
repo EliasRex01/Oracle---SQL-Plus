@@ -1,0 +1,238 @@
+&nbsp;
+
+.avatar{
+    width: 368px;
+    height: 349px;
+    position: absolute;
+    top: -190px;
+    left: calc(50% - 205px);
+}
+
+.t-PageBody--login{
+    background: url(#APP_FILES#pngtree-geometric.jpg);
+}
+.t-Form-label{
+    font-weight: bolder;
+    font-style: italic;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.t-PageBody--login form#wwvFlowForm{
+    background:url("");
+    background-repeat:no-repeat;
+    background-Size: cover;
+}
+.t-Login-region{
+    position: relative;
+    width: 456px;
+    --height: 300px;
+    margin: 0Auto;
+    /*background: rgba(130,130,130,.3);*/
+    background:rgba(168, 166, 166, 0);
+    padding: 20px 22px;
+    border: 2px solid;
+    border-top-color: rgb(0 0 0);
+    border-left-color: rgb(0 0 0);
+    border-bottom-color: rgb(0 0 0);
+    border-right-color: rgb(0 0 0);
+    border-radius: 10%;
+    /*box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px #4e7091, 9px 9px 4px 0px #000000, 16px 16px 0px 0px #417dba, 17px 17px 7px 1px #000000;*/
+}
+.t-Login-containerBody {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: px;
+    align-items: center;
+}
+
+.t-LoginPage--split .t-Login-container {
+    background-color: rgba(220, 220, 220, 0);
+}
+
+body .t-Login-title {
+    color:rgb(255, 255, 255);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+}
+
+.t-Form-checkboxLabel, .t-Form-inputContainer .checkbox_group label, .t-Form-inputContainer .radio_group label, .t-Form-label, .t-Form-radioLabel {
+    color:rgb(15, 15, 15);
+}
+.t-Login-region .t-Login-body .apex-item-text {
+    font-size: 16px;
+    padding: 4px 36px;
+    height: 40px;
+    border-radius: 10px;
+    color: rgb(2, 2, 2);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* .a-Button--hot, .t-Button--hot:not(.t-Button--simple), body .ui-button.ui-button--hot, body .ui-state-default.ui-priority-primary {
+ 
+    border-radius: 20px;
+}
+
+a-Button--hot:hover, .a-Button--hot:not(:active):focus, .t-Button--hot:not(.t-Button--simple):hover, .t-Button--hot:not(.t-Button--simple):not(:active):focus, body .ui-button.ui-button--hot:hover, body .ui-button.ui-button--hot:not(:active):focus, body .ui-state-default.ui-priority-primary:hover, body .ui-state-default.ui-priority-primary:not(:active):focus {
+    background-color:#3c7ebf;
+}*/
+
+.t-Login-buttons .t-Button {
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    border: 2px solid;
+    border-color: black;
+    left: 34%;
+    width: 35%;
+
+} 
+
+.apex-item-single-checkbox{
+    color: rgb(0, 0, 0);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+
+/* a-Button--hot:hover, .a-Button--hot:not(:active):focus, .t-Button--hot:not(.t-Button--simple):hover, .t-Button--hot:not(.t-Button--simple):not(:active):focus, body .ui-button.ui-button--hot:hover, body .ui-button.ui-button--hot:not(:active):focus, body .ui-state-default.ui-priority-primary:hover, body .ui-state-default.ui-priority-primary:not(:active):focus {
+     background: #227cd7;
+  color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 0 3px #000000,
+              0 0 10px #227cd7,
+              0 0 30px #227cd7,
+              0 0 50px #227cd7;
+}/*/
+
+
+.apex-item-single-checkbox input:checked+.u-checkbox, .apex-item-single-checkbox input:checked+label, .u-checkbox.is-checked {
+    --a-checkbox-background-color: #5cb7d3;
+    --a-checkbox-text-color: var(--a-checkbox-checked-text-color);
+}
+/* .t-Button--success {
+    --a-button-background-color: #6383a1;
+}*/
+
+/* .a-Button--hot, .a-CardView-button--hot, .apex-button-group input:checked+label, .t-Button--hot, .t-Form-fieldContainer--radioButtonGroup .apex-item-group--rc input:checked+label, .ui-button--hot {
+    --a-button-background-color: #4e7091;
+}*/
+
+
+.apex-page-error, .apex-page-success {
+    display: block;
+    position: relative;
+    width: 100%;
+    top: -150px;
+}
+
+
+
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.btn420 {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.btn420:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #4e7091;
+  border-radius: 10rem;
+  z-index: -2;
+}
+.btn420:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #5cb7d3;
+  transition: all 0.3s;
+  border-radius: 10rem;
+  z-index: -1;
+}
+.btn420:hover {
+  color: #fff;
+}
+.btn420:hover:before {
+  width: 100%;
+}
+
+
+/*.fadeInDown {
+  background-color: transparent;
+  color: transparent;
+  animation: mymove 5s infinite;
+}
+@keyframes mymove {
+  50% {box-shadow: 10px 20px 30px rgb(31, 123, 165);}
+}*/
+
+
+.fadeInDown {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  transition: transform ease .5s, box-shadow ease .5s;
+}
+.fadeInDown:hover {
+  transform: translateY(-5px);
+  /*box-shadow: 10px 40px 60px 6px rgba(0, 0, 0, 0.25);*/
+  /*box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px #4e7091, 9px 9px 4px 0px #000000, 16px 16px 0px 0px #417dba, 17px 17px 7px 1px #000000;*/
+    box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px #4e7091,11px 11px 6px 0px #000000;
+
+}
