@@ -90,3 +90,60 @@ footer{display:none!important}
   }
 
 </style>
+
+
+-- nueva version
+<div class="hero-containerr">
+
+  <div class="hero-textt">
+    <h1>Comentarios de Clientes</h1>
+    <!-- Se añade la línea por debajo del texto -->
+    <div class="underline"></div>
+  </div>
+
+</div>
+
+<style>
+  /* Contenedor principal del hero */
+  .hero-containerr {
+    position: relative;
+    height: 15vh; /* Altura ajustada para que ocupe menos espacio */
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Contenedor del texto */
+  .hero-textt {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    /* Color del texto modificado a negro */
+    color: black;
+  }
+
+  /* Estilo del título */
+  .hero-textt h1 {
+    /* Tamaño de la fuente reducido */
+    font-size: 24px; 
+    /* Cambio a una fuente monospace */
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold;
+    /* Se elimina el sombreado para un estilo más simple */
+    text-shadow: none;
+  }
+
+  /* Línea por debajo del texto */
+  .underline {
+    width: 100px; /* Ancho de la línea */
+    height: 2px;  /* Grosor de la línea */
+    background-color: black; /* Color de la línea */
+    margin: 10px auto 0; /* Centrada y con espacio por encima */
+  }
+</style>
+
+
