@@ -51,5 +51,42 @@ footer{display:none!important}
 -- en slot elegir full width content, en live edition marcar Remove Body Padding
 
 
+-- crear un titulo en monospace con font definido negro y medio rustico
+<div class="hero-containerr">
 
+  <div class="hero-textt">
+    <h1>Comentarios de Clientes</h1>
+  </div>
+</div>
 
+<style>
+  /* Contenedor principal del hero */
+  .hero-containerr {
+    position: relative;
+    height: 15vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Texto de bienvenida */
+  .hero-textt {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 5;
+  }
+
+  /* Título de bienvenida */
+  .hero-textt h1 {
+    font-size: 50px;
+    font-family: 'Monospace', sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+</style>
