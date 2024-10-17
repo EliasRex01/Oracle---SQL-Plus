@@ -3,8 +3,6 @@
  que recibirá como parámetros: La identificación del 
 hotel, cantidad de huéspedes, fecha_desde y fecha_hasta; y devolverá una variable del tipo 
 T_HABITACIONES.
- El procedimiento P_FACTURAR que recibirá 
- como parámetro la identificación del hotel
  El procedimiento P_CONSULTAR_OCUPACION 
  que recibirá como parámetros: Criterio y valor, 
 ambos definidos de tipo VARCHAR2.
@@ -20,7 +18,7 @@ IS
  
  FUNCTION F_VERIFICAR_DISPONIBILIDAD(La identificación del 
 hotel, cantidad de huéspedes, fecha_desde y fecha_hasta) RETURN T_HABITACIONES; 
- PROCEDURE P_FACTURAR(P_ID_HOTEL NUMBER) RETURN NUMBER; 
- PROCEDURE P_CONSULTAR_OCUPACION(P_ID_HOTEL NUMBER) RETURN NUMBER;
+ PROCEDURE P_FACTURAR(P_ID_HOTEL NUMBER); 
+ PROCEDURE P_CONSULTAR_OCUPACION(P_CRITERIO VARCHAR2, P_VALOR VARCHAR2);
 END; 
 /
