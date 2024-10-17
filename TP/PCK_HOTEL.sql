@@ -3,9 +3,6 @@
  que recibirá como parámetros: La identificación del 
 hotel, cantidad de huéspedes, fecha_desde y fecha_hasta; y devolverá una variable del tipo 
 T_HABITACIONES.
- El procedimiento P_CONSULTAR_OCUPACION 
- que recibirá como parámetros: Criterio y valor, 
-ambos definidos de tipo VARCHAR2.
 
 
 
