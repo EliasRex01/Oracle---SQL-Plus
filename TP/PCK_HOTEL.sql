@@ -5,7 +5,7 @@ hotel, cantidad de huéspedes, fecha_desde y fecha_hasta; y devolverá una varia
 T_HABITACIONES.
 
 
-
+-- especificacion del paquete 
 CREATE OR REPLACE PACKAGE PCK_HOTEL 
 IS 
  TYPE T_HABITACION IS RECORD 
@@ -20,3 +20,6 @@ hotel, cantidad de huéspedes, fecha_desde y fecha_hasta) RETURN T_HABITACIONES;
  PROCEDURE P_CONSULTAR_OCUPACION(P_CRITERIO VARCHAR2, P_VALOR VARCHAR2);
 END; 
 /
+
+
+
