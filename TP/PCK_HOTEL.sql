@@ -82,8 +82,84 @@ FUNCTION F_VERIFICAR_DISPONIBILIDAD(p_id_hotel number,
 
 
 
+-- prueba de funcion
 
+CREATE OR REPLACE PACKAGE BODY pkg_hotel IS
 
+    FUNCTION F_VERIFICAR_DISPONIBILIDAD (
+        p_hotel_id       NUMBER,
+        p_cant_huespedes NUMBER,
+        p_fecha_desde    DATE,
+        p_fecha_hasta    DATE
+    ) RETURN T_HABITACIONES IS
+        -- Variable para almacenar las habitaciones disponibles
+        v_habitaciones   T_HABITACIONES;
+        v_contador       BINARY_INTEGER := 1;
+
+        -- Excepciones
+        ex_invalid_guests EXCEPTION;
+        ex_invalid_dates  EXCEPTION;
+
+        -- Cursor para seleccionar las habitaciones disponibles
+        CURSOR c_habitaciones_disponibles IS
+        SELECT h.categoria, h.costo_x_noche
+        FROM H_HABITACION h
+        WHERE h.cod_hotel = p_hotel_id
+        AND h.capacidad >= p_cant_huespedes
+        AND h.numero_habitacion NOT IN (
+            SELECT r.numero_habitacion
+            FROM H_RESERVA r
+            WHERE r.cod_hotel = p_hotel_id
+            AND (r.fecha_reserva BETWEEN p_fecha_desde AND p_fecha_hasta)
+            AND r.estado IN ('Confirmada', 'Pendiente')
+        )
+        UNION
+        -- Habitaciones con checkout coincidente con la fecha_desde
+        SELECT h.categoria, h.costo_x_noche
+        FROM H_HABITACION h
+        JOIN H_RESERVA r ON h.numero_habitacion = r.numero_habitacion
+        WHERE h.cod_hotel = p_hotel_id
+        AND r.fecha_checkout = p_fecha_desde
+        AND r.estado IN ('Confirmada', 'Pendiente');
+
+    BEGIN
+        -- Validación de la cantidad de huéspedes
+        IF p_cant_huespedes < 1 OR p_cant_huespedes > 3 THEN
+            RAISE ex_invalid_guests;
+        END IF;
+
+        -- Validación de fechas
+        IF p_fecha_desde < SYSDATE THEN
+            RAISE ex_invalid_dates;
+        END IF;
+
+        IF p_fecha_hasta <= p_fecha_desde THEN
+            RAISE ex_invalid_dates;
+        END IF;
+
+        -- Inicialización de la tabla
+        v_habitaciones := T_HABITACIONES();
+
+        -- Procesar habitaciones disponibles
+        OPEN c_habitaciones_disponibles;
+        LOOP
+            FETCH c_habitaciones_disponibles INTO v_habitaciones(v_contador).categoria, v_habitaciones(v_contador).costo_x_noche;
+            EXIT WHEN c_habitaciones_disponibles%NOTFOUND;
+            v_contador := v_contador + 1;
+        END LOOP;
+        CLOSE c_habitaciones_disponibles;
+
+        RETURN v_habitaciones;
+
+    EXCEPTION
+        WHEN ex_invalid_guests THEN
+            RAISE_APPLICATION_ERROR(-20001, 'Cantidad de huéspedes debe estar entre 1 y 3.');
+        WHEN ex_invalid_dates THEN
+            RAISE_APPLICATION_ERROR(-20002, 'Fechas inválidas: Verifique la fecha de inicio y fin.');
+
+    END F_VERIFICAR_DISPONIBILIDAD;
+
+END pkg_hotel;
 
 
 
