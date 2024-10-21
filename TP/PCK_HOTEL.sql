@@ -29,7 +29,10 @@ disponible. Con los datos seleccionados la función deberá cargar la variable d
 T_HABITACIONES indexando por el número de habitación
 
 
-FUNCTION F_VERIFICAR_DISPONIBILIDAD(PIDHOTEL, cantidad de huéspedes, fecha_desde y fecha_hasta) RETURN T_HABITACIONES;
+FUNCTION F_VERIFICAR_DISPONIBILIDAD(p_id_hotel number,
+ p_cant_huéspedes number, 
+ p_fecha_desde date,
+ p_fecha_hasta date) RETURN T_HABITACIONES;
 
 
  FUNCTION F_VER_SERVICIOS (PCEDULA NUMBER, PFECHA DATE,
