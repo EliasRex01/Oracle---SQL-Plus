@@ -92,15 +92,12 @@ CREATE OR REPLACE PACKAGE BODY pkg_hotel IS
         p_fecha_desde    DATE,
         p_fecha_hasta    DATE
     ) RETURN T_HABITACIONES IS
-        -- Variable para almacenar las habitaciones disponibles
         v_habitaciones   T_HABITACIONES;
         v_contador       BINARY_INTEGER := 1;
 
-        -- Excepciones
-        ex_invalid_guests EXCEPTION;
-        ex_invalid_dates  EXCEPTION;
+        validar_datos EXCEPTION;
+        validar_fecha  EXCEPTION;
 
-        -- Cursor para seleccionar las habitaciones disponibles
         CURSOR c_habitaciones_disponibles IS
         SELECT h.categoria, h.costo_x_noche
         FROM H_HABITACION h
@@ -113,8 +110,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_hotel IS
             AND (r.fecha_reserva BETWEEN p_fecha_desde AND p_fecha_hasta)
             AND r.estado IN ('Confirmada', 'Pendiente')
         )
-        UNION
-        -- Habitaciones con checkout coincidente con la fecha_desde
+        UNION  
         SELECT h.categoria, h.costo_x_noche
         FROM H_HABITACION h
         JOIN H_RESERVA r ON h.numero_habitacion = r.numero_habitacion
@@ -122,25 +118,21 @@ CREATE OR REPLACE PACKAGE BODY pkg_hotel IS
         AND r.fecha_checkout = p_fecha_desde
         AND r.estado IN ('Confirmada', 'Pendiente');
 
-    BEGIN
-        -- Validación de la cantidad de huéspedes
+    BEGIN 
         IF p_cant_huespedes < 1 OR p_cant_huespedes > 3 THEN
-            RAISE ex_invalid_guests;
+            RAISE validar_datos;
         END IF;
 
-        -- Validación de fechas
         IF p_fecha_desde < SYSDATE THEN
-            RAISE ex_invalid_dates;
+            RAISE validar_fecha;
         END IF;
 
         IF p_fecha_hasta <= p_fecha_desde THEN
-            RAISE ex_invalid_dates;
+            RAISE validar_fecha;
         END IF;
 
-        -- Inicialización de la tabla
         v_habitaciones := T_HABITACIONES();
 
-        -- Procesar habitaciones disponibles
         OPEN c_habitaciones_disponibles;
         LOOP
             FETCH c_habitaciones_disponibles INTO v_habitaciones(v_contador).categoria, v_habitaciones(v_contador).costo_x_noche;
@@ -152,9 +144,9 @@ CREATE OR REPLACE PACKAGE BODY pkg_hotel IS
         RETURN v_habitaciones;
 
     EXCEPTION
-        WHEN ex_invalid_guests THEN
+        WHEN validar_datos THEN
             RAISE_APPLICATION_ERROR(-20001, 'Cantidad de huéspedes debe estar entre 1 y 3.');
-        WHEN ex_invalid_dates THEN
+        WHEN validar_fecha THEN
             RAISE_APPLICATION_ERROR(-20002, 'Fechas inválidas: Verifique la fecha de inicio y fin.');
 
     END F_VERIFICAR_DISPONIBILIDAD;
