@@ -34,8 +34,10 @@ FUNCTION F_VERIFICAR_DISPONIBILIDAD(p_id_hotel number,
  p_fecha_hasta date) RETURN T_HABITACIONES;
 
 
- FUNCTION F_VER_SERVICIOS (PCEDULA NUMBER, PFECHA DATE,
- PCODSERVICIO NUMBER) RETURN T_SERVICIO
+ FUNCTION F_VER_SERVICIOS (
+  PCEDULA NUMBER,
+  PFECHA DATE,
+  PCODSERVICIO NUMBER) RETURN T_SERVICIO
  IS
   CURSOR C_SERVICIOS IS
   SELECT HS.COD_SERVICIO, SH.NOMBRE_SERVICIO, HS.FECHA_SERVICIO FECHA,
@@ -89,30 +91,30 @@ FUNCTION F_VERIFICAR_DISPONIBILIDAD(p_id_hotel number,
         p_fecha_hasta    DATE
     ) RETURN T_HABITACIONES IS
         v_habitaciones   T_HABITACIONES;
-        v_contador       BINARY_INTEGER := 1;
+        v_contador       BINARY_INTEGER := 1;                   -- cuenta la cant de habt disponibles
 
         validar_datos EXCEPTION;
         validar_fecha EXCEPTION;
 
         CURSOR c_habitaciones_disponibles IS
-        SELECT h.categoria, h.costo_x_noche
-        FROM H_HABITACION h
-        WHERE h.id_hotel = p_id_hotel 
-        AND h.capacidad >= p_cant_huespedes
-        AND h.numero_habitacion NOT IN (
-            SELECT r.numero_habitacion
-            FROM H_RESERVA r
-            WHERE r.id_hotel = p_id_hotel 
-            AND (r.fecha_reserva BETWEEN p_fecha_desde AND p_fecha_hasta)
-            AND r.estado IN ('Conf', 'Pend')
-        )
-        UNION  
-        SELECT h.categoria, h.costo_x_noche
-        FROM H_HABITACION h
-        JOIN H_RESERVA r ON h.numero_habitacion = r.numero_habitacion
-        WHERE h.id_hotel = p_id_hotel
-        AND r.fecha_checkout = p_fecha_desde
-        AND r.estado IN ('Conf', 'Pend');
+         SELECT h.categoria, h.costo_x_noche
+         FROM H_HABITACION h
+         WHERE h.id_hotel = p_id_hotel 
+         AND h.capacidad >= p_cant_huespedes
+         AND h.numero_habitacion NOT IN (
+             SELECT r.numero_habitacion
+             FROM H_RESERVA r
+             WHERE r.id_hotel = p_id_hotel 
+             AND (r.fecha_reserva BETWEEN p_fecha_desde AND p_fecha_hasta)
+             AND r.estado IN ('C', 'P')
+         )
+         UNION  
+         SELECT h.categoria, h.costo_x_noche
+         FROM H_HABITACION h
+         JOIN H_RESERVA r ON h.numero_habitacion = r.numero_habitacion
+         WHERE h.id_hotel = p_id_hotel
+         AND r.fecha_checkout = p_fecha_desde
+         AND r.estado IN ('C', 'P');
 
     BEGIN 
         IF p_cant_huespedes < 1 OR p_cant_huespedes > 3 THEN
@@ -146,3 +148,23 @@ FUNCTION F_VERIFICAR_DISPONIBILIDAD(p_id_hotel number,
             RAISE_APPLICATION_ERROR(-20002, 'Fecha desde y Fecha hasta no validas');
 
     END F_VERIFICAR_DISPONIBILIDAD;
+
+
+
+-- decode function working in oracle 
+--Examples: This example decodes the value warehouse_id. If warehouse_id is 1, then the function returns 'Southlake'; if warehouse_id is 2, then it returns 'San Francisco'; and so forth.
+-- If warehouse_id is not 1, 2, 3, or 4, then the function returns 'Non domestic'.
+
+SELECT product_id,
+       DECODE (warehouse_id, 1, 'Southlake', 
+                             2, 'San Francisco', 
+                             3, 'New Jersey', 
+                             4, 'Seattle',
+                                'Non domestic') "Location" 
+  FROM inventories
+  WHERE product_id < 1775
+  ORDER BY product_id, "Location";
+
+
+
+
