@@ -30,7 +30,7 @@ T_HABITACIONES indexando por el número de habitación
 
 
 FUNCTION F_VERIFICAR_DISPONIBILIDAD(p_id_hotel number,
- p_cant_huéspedes number, 
+ p_cant_huespedes number, 
  p_fecha_desde date,
  p_fecha_hasta date) RETURN T_HABITACIONES;
 
@@ -83,11 +83,8 @@ FUNCTION F_VERIFICAR_DISPONIBILIDAD(p_id_hotel number,
 
 
 -- prueba de funcion
-
-CREATE OR REPLACE PACKAGE BODY pkg_hotel IS
-
     FUNCTION F_VERIFICAR_DISPONIBILIDAD (
-        p_hotel_id       NUMBER,
+        p_id_hotel       NUMBER,
         p_cant_huespedes NUMBER,
         p_fecha_desde    DATE,
         p_fecha_hasta    DATE
@@ -96,27 +93,27 @@ CREATE OR REPLACE PACKAGE BODY pkg_hotel IS
         v_contador       BINARY_INTEGER := 1;
 
         validar_datos EXCEPTION;
-        validar_fecha  EXCEPTION;
+        validar_fecha EXCEPTION;
 
         CURSOR c_habitaciones_disponibles IS
         SELECT h.categoria, h.costo_x_noche
         FROM H_HABITACION h
-        WHERE h.cod_hotel = p_hotel_id
+        WHERE h.id_hotel = p_id_hotel 
         AND h.capacidad >= p_cant_huespedes
         AND h.numero_habitacion NOT IN (
             SELECT r.numero_habitacion
             FROM H_RESERVA r
-            WHERE r.cod_hotel = p_hotel_id
+            WHERE r.id_hotel = p_id_hotel 
             AND (r.fecha_reserva BETWEEN p_fecha_desde AND p_fecha_hasta)
-            AND r.estado IN ('Confirmada', 'Pendiente')
+            AND r.estado IN ('Conf', 'Pend')
         )
         UNION  
         SELECT h.categoria, h.costo_x_noche
         FROM H_HABITACION h
         JOIN H_RESERVA r ON h.numero_habitacion = r.numero_habitacion
-        WHERE h.cod_hotel = p_hotel_id
+        WHERE h.id_hotel = p_id_hotel
         AND r.fecha_checkout = p_fecha_desde
-        AND r.estado IN ('Confirmada', 'Pendiente');
+        AND r.estado IN ('Conf', 'Pend');
 
     BEGIN 
         IF p_cant_huespedes < 1 OR p_cant_huespedes > 3 THEN
@@ -145,13 +142,8 @@ CREATE OR REPLACE PACKAGE BODY pkg_hotel IS
 
     EXCEPTION
         WHEN validar_datos THEN
-            RAISE_APPLICATION_ERROR(-20001, 'Cantidad de huéspedes debe estar entre 1 y 3.');
+            RAISE_APPLICATION_ERROR(-20001, 'Cantidad de huespedes debe estar entre 1 y 3.');
         WHEN validar_fecha THEN
-            RAISE_APPLICATION_ERROR(-20002, 'Fechas inválidas: Verifique la fecha de inicio y fin.');
+            RAISE_APPLICATION_ERROR(-20002, 'Fecha desde y Fecha hasta no validas');
 
     END F_VERIFICAR_DISPONIBILIDAD;
-
-END pkg_hotel;
-
-
-
