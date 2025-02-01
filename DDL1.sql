@@ -1,4 +1,4 @@
-Creación Tablas: Sintaxis básica
+--Creación Tablas: Sintaxis básica
 CREATE TABLE [esquema.]nombretabla
 (columna tipo_dato [DEFAULT
 expr]
